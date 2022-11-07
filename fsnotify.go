@@ -59,6 +59,9 @@ const (
 	// get triggered very frequently by some software. For example, Spotlight
 	// indexing on macOS, anti-virus software, backup software, etc.
 	Chmod
+	
+	// File write closed
+	CloseWrite
 )
 
 // Common errors that can be reported.
@@ -84,6 +87,10 @@ func (o Op) String() string {
 	}
 	if o.Has(Chmod) {
 		b.WriteString("|CHMOD")
+	}
+	// only supported by inotify
+	if o.Has(CloseWrite) {
+		buffer.WriteString("|CLOSE_WRITE")
 	}
 	if b.Len() == 0 {
 		return "[no events]"
