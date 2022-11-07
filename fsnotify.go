@@ -90,7 +90,7 @@ func (o Op) String() string {
 	}
 	// only supported by inotify
 	if o.Has(CloseWrite) {
-		buffer.WriteString("|CLOSE_WRITE")
+		b.WriteString("|CLOSE_WRITE")
 	}
 	if b.Len() == 0 {
 		return "[no events]"
